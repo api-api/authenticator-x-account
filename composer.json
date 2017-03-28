@@ -1,0 +1,43 @@
+{
+  "name": "api-api/authenticator-x-account",
+  "description": "Authenticator implementation for X_Account header tokens in combination with an account identifier in the base URI.",
+  "version": "1.0.0",
+  "license": "GPL-3.0",
+  "keywords": [
+    "api-api",
+    "authenticator",
+    "authenticator-x-account"
+  ],
+  "homepage": "http://awesome.ug",
+  "authors": [
+    {
+      "name": "Felix Arntz",
+      "email": "felix-arntz@leaves-and-love.net",
+      "homepage": "https://leaves-and-love.net",
+      "role": "Lead Developer"
+    },
+    {
+      "name": "Sven Wagener",
+      "email": "sven@awesome.ug",
+      "homepage": "http://awesome.ug",
+      "role": "Head of Development"
+    }
+  ],
+  "support": {
+    "issues": "https://github.com/api-api/authenticator-x-account/issues"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "autoload": {
+    "psr-4": {
+      "APIAPI\\Authenticator_X_Account\\": "src/Authenticator_X_Account/"
+    },
+    "files": [
+      "src/authenticator-x-account.php"
+    ]
+  },
+  "require": {
+    "api-api/core": "*"
+  }
+}
