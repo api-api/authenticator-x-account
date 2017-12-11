@@ -17,13 +17,13 @@ if ( ! function_exists( 'apiapi_register_authenticator_x_account' ) ) {
 	 */
 	function apiapi_register_authenticator_x_account() {
 		if ( function_exists( 'apiapi_manager' ) ) {
-			apiapi_manager()->authenticators()->register( 'x-account', 'APIAPI\Authenticator_X\Authenticator_X' );
+			apiapi_manager()->authenticators()->register( 'x-account', 'APIAPI\Authenticator_X_Account\Authenticator_X_Account' );
 		} else {
 			if ( ! isset( $GLOBALS['_apiapi_authenticators_loader'] ) ) {
 				$GLOBALS['_apiapi_authenticators_loader'] = array();
 			}
 
-			$GLOBALS['_apiapi_authenticators_loader']['x-account'] = 'APIAPI\Authenticator_X\Authenticator_X';
+			$GLOBALS['_apiapi_authenticators_loader']['x-account'] = 'APIAPI\Authenticator_X_Account\Authenticator_X_Account';
 		}
 	}
 
