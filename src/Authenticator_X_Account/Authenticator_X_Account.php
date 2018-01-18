@@ -2,14 +2,15 @@
 /**
  * Authenticator_X_Account class
  *
- * @package APIAPIAuthenticatorXAccount
+ * @package APIAPI\Authenticator_X_Account
  * @since 1.0.0
  */
 
 namespace APIAPI\Authenticator_X_Account;
 
 use APIAPI\Core\Authenticators\Authenticator;
-use APIAPI\Core\Exception;
+use APIAPI\Core\Request\Route_Request;
+use APIAPI\Core\Exception\Request_Authentication_Exception;
 
 if ( ! class_exists( 'APIAPI\Authenticator_X_Account\Authenticator_X_Account' ) ) {
 
@@ -26,11 +27,12 @@ if ( ! class_exists( 'APIAPI\Authenticator_X_Account\Authenticator_X_Account' ) 
 		 * the required values on the request object.
 		 *
 		 * @since 1.0.0
-		 * @access public
 		 *
-		 * @param APIAPI\Core\Request\Route_Request $request The request to send.
+		 * @param Route_Request $request The request to send.
+		 *
+		 * @throws Request_Authentication_Exception Thrown when the request cannot be authenticated.
 		 */
-		public function authenticate_request( $request ) {
+		public function authenticate_request( Route_Request $request ) {
 			$data = $this->parse_authentication_data( $request );
 
 			if ( empty( $data['placeholder_name'] ) ) {
@@ -44,11 +46,11 @@ if ( ! class_exists( 'APIAPI\Authenticator_X_Account\Authenticator_X_Account' ) 
 			}
 
 			if ( empty( $data['account'] ) ) {
-				throw new Exception( sprintf( 'The request to %s could not be authenticated as an account identifier has not been passed.', $request->get_uri() ) );
+				throw new Request_Authentication_Exception( sprintf( 'The request to %s could not be authenticated as an account identifier has not been passed.', $request->get_uri() ) );
 			}
 
 			if ( empty( $data['token'] ) ) {
-				throw new Exception( sprintf( 'The request to %s could not be authenticated as a token has not been passed.', $request->get_uri() ) );
+				throw new Request_Authentication_Exception( sprintf( 'The request to %s could not be authenticated as a token has not been passed.', $request->get_uri() ) );
 			}
 
 			$request->set_param( $data['placeholder_name'], $data['account'] );
@@ -62,12 +64,11 @@ if ( ! class_exists( 'APIAPI\Authenticator_X_Account\Authenticator_X_Account' ) 
 		 * It only checks whether authentication data has been properly set on it.
 		 *
 		 * @since 1.0.0
-		 * @access public
 		 *
-		 * @param APIAPI\Core\Request\Route_Request $request The request to check.
+		 * @param Route_Request $request The request to check.
 		 * @return bool True if the request is authenticated, otherwise false.
 		 */
-		public function is_authenticated( $request ) {
+		public function is_authenticated( Route_Request $request ) {
 			$data = $this->parse_authentication_data( $request );
 
 			if ( empty( $data['placeholder_name'] ) ) {
@@ -90,7 +91,6 @@ if ( ! class_exists( 'APIAPI\Authenticator_X_Account\Authenticator_X_Account' ) 
 		 * Sets the default authentication arguments.
 		 *
 		 * @since 1.0.0
-		 * @access protected
 		 */
 		protected function set_default_args() {
 			$this->default_args = array(

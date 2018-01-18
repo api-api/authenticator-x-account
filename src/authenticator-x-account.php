@@ -2,7 +2,7 @@
 /**
  * Authenticator loader.
  *
- * @package APIAPIAuthenticatorXAccount
+ * @package APIAPI\Authenticator_X_Account
  * @since 1.0.0
  */
 
