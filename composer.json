@@ -2,7 +2,7 @@
   "name": "api-api/authenticator-x-account",
   "description": "Authenticator implementation for X_Account header tokens in combination with an account identifier in the base URI.",
   "version": "1.0.0",
-  "license": "GPL-3.0",
+  "license": "GPL-2.0-or-later",
   "keywords": [
     "api-api",
     "authenticator",
